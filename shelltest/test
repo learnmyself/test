@@ -1,0 +1,24 @@
+#!/bin/bash
+#echo "a,b,c,d" | sed 's/,/n/g' | tr -t 'n' ','
+#datamid2=`echo $uuiddata | awk -F '-' '{print $5}'`
+#awk 'BEGIN {count=0;print"[start]user count is", count;} {count=count+1;print $0;} END{print "[end] user count is ", count}' /etc/passwd 
+
+#ls -l ~ | awk 'BEGIN {size=0; print "[start]size is ", size} {if($5>4096*1024){size=size+$5;}} END{print "[end]size is ", size/1024/1024, "M"} '
+
+#awk -F ':' 'BEGIN {count=0;} {name[count] = $1; count++;} END {for(i=0;i < NR; i++) print i, name[i]}' /etc/passwd
+
+#awk 'gsub(/#/, ""); count++; END {print "the total is " $count}' test1.sh
+
+#awk '{print FILENAME, $0}' test1.sh replacetest.sh uuid.sh > fileall
+
+#sed -r 's/bbb(.)1111/HHH\12222/g' 111.txt 
+#elastos="ELASTOS"
+#io="IO"
+#sed -r 's/__ELASTOS_IO_([^ELASTOS].*)_H__/{ `echo \1 | grep -q ${io} && echo "__ELASTOS_" || echo "__ELASTOS_IO_"`; }_H__/g' CPushbackReader.h
+#elastos='__ELASTOS_IO_([^ELASTOS].*)_H__'
+if [ -d "$1" ]; then
+echo $1
+sed -ri 's/__([^ELASTOS].*)_H__/__ELASTOS_IO_\1_H__/g' `grep __[^ELASTOS].*_H__ -rl $1`
+else
+echo "Please input right directory!!!"
+fi
